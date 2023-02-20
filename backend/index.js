@@ -8,13 +8,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post("/search", (req, res) => {
-  const status = students.some((student) => student.value === req.body.student);
-  if (status) {
-    res.send("exists in the database");
-  } else {
-    res.send("Student is not in our database");
-  }
-  res.send(`recieved name is:${req.body.student}`);
+  const student = students.find((student) => student.value === req.body.student);
+  res.send(student);
 });
 
 app.get("/", function (req, res) {
